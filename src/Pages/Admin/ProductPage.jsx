@@ -1,29 +1,26 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import NavbarAdmin from '../../components/admin/home/NavbarAdmin'
-import AdminDashboard from '../../components/admin/dashboard/AdminDashboard'
 import SidebarAdmin from '../../components/admin/home/SidebarAdmin'
+import ProductList from '../../components/admin/service/product/ProductList'
 
-function AdminHome() {
-    
-
-    return (
-        <div>
+function ProductPage() {
+  return (
+    <div>
             <Helmet>
-                <title>Admin Dashboard | Fixmyappliances</title>
+                <title>ProductManagement | Fixmyappliances</title>
             </Helmet>
             <div className='flex flex-col h-screen'>
                 <NavbarAdmin />
                 <div className='flex flex-1'>
                     <SidebarAdmin />
-                    <div className='flex-1 px-4  overflow-y-auto'>
-                        <AdminDashboard />
-                        
+                    <div className='flex-1 px-4 mt-24 overflow-y-auto'>
+                        <ProductList />
                     </div>
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
-export default AdminHome
+export default ProductPage

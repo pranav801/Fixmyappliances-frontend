@@ -11,9 +11,24 @@ const isAdminAuth = (token) => {
     withCredentials: true,
   });
 };
+const adminUserDetails = () => {
+  return adminAxiosInstance.get("/list-users/", {
+    withCredentials: true,
+  });
+};
+
+const adminManageUser = (id) => {
+  return adminAxiosInstance.patch(`/manage-user/${id}/`, {
+    withCredentials: true,
+  });
+};
+
+
 
 
 export {
     adminLogin,
     isAdminAuth,
+    adminUserDetails,
+    adminManageUser
 }

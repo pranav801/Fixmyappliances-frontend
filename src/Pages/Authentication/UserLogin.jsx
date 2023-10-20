@@ -10,10 +10,9 @@ import isLogged from '../../Context/auth';
 import jwtDecode from 'jwt-decode';
 import { googleAuthentication, userLogin } from '../../services/userApi';
 import image from '../../images/sign_in.jpg'
-
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function UserLogin() {
-
 
     const navigate = useNavigate();
     const urlParams = new URLSearchParams(window.location.search);
@@ -61,7 +60,7 @@ function UserLogin() {
                         console.log('final result :', jwtDecode(JSON.stringify(res.data.token)));
                         if (res.data.status === 200) {
                             localStorage.setItem('userJwt', JSON.stringify(res.data.token));
-                            toast.success(res.data.msg)
+                            toast.success(res.data.msg,{position: toast.POSITION.TOP_CENTER})
                             navigate('/')
                         } else if (res.data.status === 400) {
                             toast.error(res.data.msg)
@@ -93,7 +92,7 @@ function UserLogin() {
                     const decoded = jwtDecode(token)
                     if (decoded.role === 'user') {
                         localStorage.setItem("userJwt", token)
-                        toast.success('Login succesfull')
+                        toast.success('Login succesfull',{position: toast.POSITION.TOP_CENTER})
                         navigate('/')
                     } else {
                         toast.error('Invalid user')

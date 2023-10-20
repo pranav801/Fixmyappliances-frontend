@@ -90,7 +90,7 @@ function AdminLogin() {
 
                             <div className="flex items-center justify-between">
                                 <button
-                                    className="flex items-center justify-center mx-auto my-5 py-2 px-4 w-40 bg-gray border border-gray-200 rounded-lg text-gray-700 font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none"
+                                    className="flex items-center justify-center mx-auto my-5 py-2 px-4 w-40 bg-black border border-gray-200 rounded-lg text-white font-semibold shadow-lg transform transition hover:scale-105 focus:outline-none"
                                     type="button"
                                     onClick={() => {
                                         handleAdminLogin()

@@ -22,8 +22,17 @@ const googleAuthentication = (value) => {
     return userAxiosInstance.post("/api/google_authentication/", values, { withCredentials: true })
 }
 
+const createCheckoutSession = (values) => {
+    return userAxiosInstance.post(
+      `user/task-subscription-checkout-session/`,
+      values,
+      { withCredentials: true }
+    );
+  };
+
 export {
     googleAuthentication,
     userLogin,
     userSignup,
+    createCheckoutSession,
 }

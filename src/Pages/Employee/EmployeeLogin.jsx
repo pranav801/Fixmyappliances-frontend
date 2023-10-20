@@ -1,19 +1,30 @@
-import React from 'react'
-import { Input, Button } from "@material-tailwind/react";
+import React, { useState } from 'react'
+import { Input, Button, Spinner } from "@material-tailwind/react";
 import image from '../../images/Untitled.png'
 import { employeeAxiosInstance } from '../../utils/axiosUtils';
+import { toast } from 'react-toastify';
+import EmployeeSignIn from '../../components/employee/EmployeeSignIn';
 
-const adminLogin = (email) => {
-    return employeeAxiosInstance.post("register/", email, {
-      withCredentials: true,
-    }).then((response)=>{
-        console.log(response.data);
-    })
-  };
 
 function EmployeeLogin() {
     const [email, setEmail] = React.useState("");
-    const onChange = ({ target }) => setEmail(target.value);
+    
+    const [isLoading,setIsLoading] = useState(false);
+
+    const adminLogin = (email) => {
+        setIsLoading(true)
+        employeeAxiosInstance.post("register/", email, {
+          withCredentials: true,
+        }).then((response)=>{
+            setIsLoading(false)
+            toast.success(response.data.msg)
+            console.log(response.data);
+        }).catch((error)=>{
+            setIsLoading(false)
+            toast.error('some error occoured')
+        })
+      };
+    
 
     return (
 
@@ -28,7 +39,7 @@ function EmployeeLogin() {
                         type="email"
                         label="Email Address"
                         value={email}
-                        onChange={onChange}
+                        onChange={(e)=>setEmail(e.target.value)}
                         className="pr-20"
                         containerProps={{
                             className: "min-w-0",
@@ -37,14 +48,16 @@ function EmployeeLogin() {
                     <Button
                         size="sm"
                         color={email ? "gray" : "blue-gray"}
-                        disabled={!email}
+                        disabled={!email || isLoading}
                         className="!absolute right-1 top-1 rounded"
                         onClick={()=>adminLogin({email})}
-                    >
-                        Send
+                    > {isLoading ? <Spinner className='h-4 w-4'/> : 'Send'}
+
                     </Button>
                 </div>
-
+                <div>
+                    <EmployeeSignIn/>
+                </div>
                 <h2 className='text-2xl font-bold text-gray-500 pt-96 ms-70'>Change your life with FixMyAppliences ❤️</h2>
 
             </div>

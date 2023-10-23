@@ -8,23 +8,23 @@ import EmployeeSignIn from '../../components/employee/EmployeeSignIn';
 
 function EmployeeLogin() {
     const [email, setEmail] = React.useState("");
-    
-    const [isLoading,setIsLoading] = useState(false);
 
-    const adminLogin = (email) => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    const employeeLogin = (email) => {
         setIsLoading(true)
         employeeAxiosInstance.post("register/", email, {
-          withCredentials: true,
-        }).then((response)=>{
+            withCredentials: true,
+        }).then((response) => {
             setIsLoading(false)
             toast.success(response.data.msg)
             console.log(response.data);
-        }).catch((error)=>{
+        }).catch((error) => {
             setIsLoading(false)
             toast.error('some error occoured')
         })
-      };
-    
+    };
+
 
     return (
 
@@ -39,7 +39,7 @@ function EmployeeLogin() {
                         type="email"
                         label="Email Address"
                         value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="pr-20"
                         containerProps={{
                             className: "min-w-0",
@@ -50,13 +50,13 @@ function EmployeeLogin() {
                         color={email ? "gray" : "blue-gray"}
                         disabled={!email || isLoading}
                         className="!absolute right-1 top-1 rounded"
-                        onClick={()=>adminLogin({email})}
-                    > {isLoading ? <Spinner className='h-4 w-4'/> : 'Send'}
+                        onClick={() => employeeLogin({ email })}
+                    > {isLoading ? <Spinner className='h-4 w-4' /> : 'Send'}
 
                     </Button>
                 </div>
                 <div>
-                    <EmployeeSignIn/>
+                    <EmployeeSignIn />
                 </div>
                 <h2 className='text-2xl font-bold text-gray-500 pt-96 ms-70'>Change your life with FixMyAppliences ❤️</h2>
 

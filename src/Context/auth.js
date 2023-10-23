@@ -6,6 +6,7 @@ export function getLocal(tokenName) {
 }
 
 export function decodedToken(tokenName){
+    
     const token = getLocal(tokenName)
     const decoded = jwtDecode(token)
     return decoded
@@ -18,8 +19,8 @@ export default function isLogged(tokenName) {
         const decoded = jwtDecode(localResponse)
         if (tokenName === 'userJwt' && decoded.role === 'user') {
             return 'user'
-        } else if (tokenName === 'counselorJwt' && decoded.role === 'counselor') {
-            return 'counselor'
+        } else if (tokenName === 'employeeJwt' && decoded.role === 'employee') {
+            return 'employee'
         } else if (tokenName === 'adminJwt' && decoded.role === 'admin') {
             return 'admin'
         }

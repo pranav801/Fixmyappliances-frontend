@@ -35,7 +35,7 @@ function AddressFill({ open, handleOpen, serviceId }) {
     const token = decodedToken('userJwt')
     useEffect(() => {
         const user = token.id
-
+        console.log('token user',user);
         const fetchAddress = async () => {
             try {
                 const res = await axios.get(`http://localhost:8000/api/address/select/${user}`)

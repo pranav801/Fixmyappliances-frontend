@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Typography,
     Button,
@@ -7,40 +7,61 @@ import {
     MenuList,
     MenuItem,
     Avatar,
-  } from "@material-tailwind/react";
-  import {
+} from "@material-tailwind/react";
+import {
     UserCircleIcon,
     ChevronDownIcon,
-    Cog6ToothIcon,
     InboxArrowDownIcon,
-    LifebuoyIcon,
     PowerIcon,
-  } from "@heroicons/react/24/outline";
+    ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { getLocal } from '../../../Context/auth';
 
 
 function UserProfileIcon() {
     const profileMenuItems = [
         {
-          label: "My Profile",
-          icon: UserCircleIcon,
+            label: "My Profile",
+            icon: UserCircleIcon,
+            action: '/userprofile'
         },
 
         {
-          label: "Inbox",
-          icon: InboxArrowDownIcon,
+            label: "Inbox",
+            icon: InboxArrowDownIcon,
+            action: 'closeMenu'
         },
         {
-          label: "Help",
-          icon: LifebuoyIcon,
-        },
-        {
-          label: "Sign Out",
-          icon: PowerIcon,
-        },
-      ];
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+            label: "Your orders",
+            icon: ShoppingBagIcon,
+            action: '/bookings',
 
+
+        },
+        {
+            label: "Sign Out",
+            icon: PowerIcon,
+            action: 'signout'
+
+        },
+    ];
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [action, setAction] = useState();
     const closeMenu = () => setIsMenuOpen(false);
+
+    const token = getLocal('userJwt')
+    const navigate = useNavigate()
+
+    const handleLogOut = () => {
+        localStorage.removeItem('userJwt');
+        toast.success('Succesfully Logged Out', { position: toast.POSITION.TOP_CENTER })
+        navigate('/')
+
+    }
+
+
     return (
         <div>
             <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -65,15 +86,15 @@ function UserProfileIcon() {
                     </Button>
                 </MenuHandler>
                 <MenuList className="p-1">
-                    {profileMenuItems.map(({ label, icon }, key) => {
+                    {profileMenuItems.map(({ label, icon, action }, key) => {
                         const isLastItem = key === profileMenuItems.length - 1;
                         return (
                             <MenuItem
                                 key={label}
-                                onClick={closeMenu}
+                                onClick={action === 'signout' ? handleLogOut : () => navigate(action)}
                                 className={`flex items-center gap-2 rounded ${isLastItem
-                                        ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                                        : ""
+                                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                                    : ""
                                     }`}
                             >
                                 {React.createElement(icon, {

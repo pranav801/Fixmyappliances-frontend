@@ -30,6 +30,7 @@ function ProductCard() {
   return (
     <>
       {products.map((prod) => (
+        <div key={prod.id}>
 
         <Link to={`/products/details/${prod.product_name}`} >
 
@@ -54,6 +55,7 @@ function ProductCard() {
           </Card>
 
         </Link>
+        </div>
 
       ))}
     </>

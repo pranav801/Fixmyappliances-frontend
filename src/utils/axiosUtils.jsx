@@ -1,7 +1,10 @@
 import axios from 'axios';
-import { BaseUrl, AdminUrl, CounselorUrl } from '../constants/constants';
+import { BaseUrl, AdminUrl } from '../constants/constants';
 
 
+
+
+ export const  wsApiUrl= 'ws://localhost:8000/'
 
 const createAxiosClient = (baseURL) => {
     console.log('reached here also :', baseURL);
@@ -32,12 +35,6 @@ userAxiosInstance.interceptors.request.use(async (req) => {
 })
 
 
-// const counselorAxiosInstance = createAxiosClient(CounselorUrl)
-// counselorAxiosInstance.interceptors.request.use(async (req) => {
-//     const modifiedReq = attachToken(req, "counselorJwt")
-//     console.log('Useraxios instance modified :', modifiedReq);
-//     return modifiedReq;
-// })
 
 
 const adminAxiosInstance = createAxiosClient(AdminUrl)

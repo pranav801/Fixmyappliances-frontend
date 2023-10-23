@@ -6,7 +6,6 @@ import {
   Button,
   Input,
 } from "@material-tailwind/react";
-import { BellIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
 import UserProfileIcon from './UserProfileIcon';
 import { Link } from 'react-router-dom';
 

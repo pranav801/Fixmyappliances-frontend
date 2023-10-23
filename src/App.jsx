@@ -21,6 +21,10 @@ import ProductList from './Pages/User/ProductList'
 import ProductDetailPage from './Pages/User/ProductDetailPage'
 import ListEmployee from './components/user/home/booking/ListEmployee'
 import PaymentSucess from './components/user/home/booking/PaymentSucess'
+import ProfilePage from './Pages/User/ProfilePage'
+import BookingListPage from './Pages/User/BookingListPage'
+import MessagePage from './Pages/User/MessagePage'
+import EmpBookingListPage from './Pages/Employee/booking/EmpBookingListPage'
 
 
 function App() {
@@ -54,10 +58,19 @@ function App() {
           <Route path='employee/home' element={<EmployeeHome />} />
           <Route path='employee/form' element={<EmployeeFormPage />} />
           <Route path='employee/signin' element={<EmployeeSignIn/>} />
+          <Route path='employee/bookinglist' element={<EmpBookingListPage/>} />
 
           <Route path='service/booking/listemployee/:serviceId' element={<ListEmployee/>} />
           <Route path='service/payment/' element={<PaymentSucess/>} />
 
+          <Route path='userprofile/' element={<ProfilePage/>} />
+          <Route path='bookings/' element={<BookingListPage/>} />
+          <Route path='messages/' element={<MessagePage/>} />
+          <Route path='messagesing/:Id' element={<MessagePage/>} />
+
+          
+          
+          
           <Route path='*' element={<PageNotFound />} />
 
         </Routes>

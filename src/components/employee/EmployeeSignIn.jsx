@@ -30,9 +30,9 @@ function EmployeeSignIn() {
         .then((response) => {
             if (response.status === 200) {
                 setLoggedIn(true);
-                // Store the JWT token in local storage for future API requests
-                localStorage.setItem('accessToken', response.data.access_token);
-                // Optionally, you can store the refresh token too
+                console.log(response.data);
+
+                localStorage.setItem('employeeJwt', response.data.access);
                 // localStorage.setItem('refreshToken', response.data.refresh_token);
                 navigate('../employee/home/')
             } else {

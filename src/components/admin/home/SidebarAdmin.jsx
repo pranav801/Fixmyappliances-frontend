@@ -95,7 +95,7 @@ function SidebarAdmin() {
                     </ListItem>
                     <AccordionBody className="py-1">
                         <List className="p-0">
-                        <Link to='/admin/employeerequests'><ListItem>
+                            <Link to='/admin/employeerequests'><ListItem>
                                 <ListItemPrefix>
                                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                                 </ListItemPrefix>
@@ -118,7 +118,7 @@ function SidebarAdmin() {
                     <ListItem className="p-0" selected={open === 3}>
                         <AccordionHeader onClick={() => handleOpen(3)} className="border-b-0 p-3">
                             <ListItemPrefix>
-                            <Cog6ToothIcon className="h-5 w-5" />
+                                <Cog6ToothIcon className="h-5 w-5" />
                             </ListItemPrefix>
                             <Typography color="blue-gray" className="mr-auto font-normal">
                                 Service Management
@@ -140,7 +140,7 @@ function SidebarAdmin() {
                                 Products
                             </ListItem></Link>
                             <Link to='/admin/servicemanagement'><ListItem>
-                            <ListItemPrefix>
+                                <ListItemPrefix>
                                     <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                                 </ListItemPrefix>
                                 Service
@@ -148,34 +148,13 @@ function SidebarAdmin() {
                         </List>
                     </AccordionBody>
                 </Accordion>
-
+ 
                 <ListItem>
                     <ListItemPrefix>
                         <InboxIcon className="h-5 w-5" />
                     </ListItemPrefix>
-                    Inbox
-                    <ListItemSuffix>
-                        <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-                    </ListItemSuffix>
+                    Booking Management
                 </ListItem>
-                {/* <ListItem>
-                    <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Profile
-                </ListItem>
-                <ListItem>
-                    <ListItemPrefix>
-                        <Cog6ToothIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Settings
-                </ListItem>
-                <ListItem>
-                    <ListItemPrefix>
-                        <PowerIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Log Out
-                </ListItem> */}
             </List>
         </Card>
     );

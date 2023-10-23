@@ -27,6 +27,8 @@ function CategoryCard() {
   return (
     <div className='flex justify-evenly pt-5' >
       {category.map((cat) => (
+        <div key={cat.id}>
+          
         <Link to = {`/products/${cat.category_name}`} >
         <Card
           shadow={false}
@@ -54,6 +56,7 @@ function CategoryCard() {
           </CardBody>
         </Card>
         </Link>
+        </div>
         
       ))}
     </div>

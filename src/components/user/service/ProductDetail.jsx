@@ -10,6 +10,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import AddressFill from '../home/booking/AddressFill';
 import { getLocal } from '../../../Context/auth';
+import { BaseUrl } from '../../../constants/constants';
 
 
 function ProductDetail() {
@@ -54,7 +55,7 @@ function ProductDetail() {
                         className="m-0 w-2/5 shrink-0 rounded-r-none"
                     >
                         <img
-                            src={'http://localhost:8000/' + service.service_img}
+                            src={BaseUrl+ service.service_img}
                             alt="card-image"
                             className="h-full w-full object-cover"
                         />

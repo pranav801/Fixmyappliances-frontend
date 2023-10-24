@@ -70,7 +70,7 @@ function BookingList() {
                 </div>
 
             </CardHeader>
-            <CardBody className="overflow-scroll px-5 ">
+            <CardBody className="overflow-hidden px-5 ">
                 <table className="mt-4 w-full min-w-max table-auto text-left">
                     <thead>
                         <tr>

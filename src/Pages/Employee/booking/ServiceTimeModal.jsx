@@ -48,7 +48,7 @@ function ServiceTimeModal({ booking }) {
     return (
         <div>
 
-            <Button onClick={handleOpen} variant="gradient">
+            <Button onClick={handleOpen} variant="gradient" size='sm'>
                 Add time & date
             </Button>
             <Dialog open={open} handler={handleOpen} size='xs'>

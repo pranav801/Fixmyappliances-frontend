@@ -25,6 +25,8 @@ import ProfilePage from './Pages/User/ProfilePage'
 import BookingListPage from './Pages/User/BookingListPage'
 import MessagePage from './Pages/User/MessagePage'
 import EmpBookingListPage from './Pages/Employee/booking/EmpBookingListPage'
+import AdminBookingListPage from './Pages/Admin/AdminBookingListPage'
+import EmployeeInbox from './Pages/Employee/EmployeeInbox'
 
 
 function App() {
@@ -52,13 +54,14 @@ function App() {
           <Route path='admin/categorymanagement' element={<Category />} />
           <Route path='admin/productmanagement' element={<ProductPage />} />
           <Route path='admin/servicemanagement' element={<ServicePage/>} />
-
+          <Route path='admin/bookingmanagement' element={<AdminBookingListPage/>} />
           
           <Route path='employee/login' element={<EmployeeLogin />} />
           <Route path='employee/home' element={<EmployeeHome />} />
           <Route path='employee/form' element={<EmployeeFormPage />} />
           <Route path='employee/signin' element={<EmployeeSignIn/>} />
           <Route path='employee/bookinglist' element={<EmpBookingListPage/>} />
+          <Route path='/employee/inbox/' element={<EmployeeInbox/>} />
 
           <Route path='service/booking/listemployee/:serviceId' element={<ListEmployee/>} />
           <Route path='service/payment/' element={<PaymentSucess/>} />
@@ -66,7 +69,7 @@ function App() {
           <Route path='userprofile/' element={<ProfilePage/>} />
           <Route path='bookings/' element={<BookingListPage/>} />
           <Route path='messages/' element={<MessagePage/>} />
-          <Route path='messagesing/:Id' element={<MessagePage/>} />
+          <Route path='messaging/' element={<MessagePage/>} />
 
           
           

@@ -8,7 +8,7 @@ function EmployeeHome() {
 
             <div className='flex flex-col h-screen'>
                 <EmployeeNavBar />
-                <div className='flex flex-1'>
+                <div className='flex flex-1 pt-20'>
                     <EmployeeSideBar />
                     <div className='flex-1 px-4  overflow-y-auto'>
 

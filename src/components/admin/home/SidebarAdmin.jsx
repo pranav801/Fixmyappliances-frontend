@@ -5,8 +5,6 @@ import {
     List,
     ListItem,
     ListItemPrefix,
-    ListItemSuffix,
-    Chip,
     Accordion,
     AccordionHeader,
     AccordionBody,
@@ -17,7 +15,6 @@ import {
     UserCircleIcon,
     Cog6ToothIcon,
     InboxIcon,
-    PowerIcon,
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -70,7 +67,6 @@ function SidebarAdmin() {
                                 </ListItemPrefix>
                                 Users
                             </ListItem></Link>
-
                         </List>
                     </AccordionBody>
                 </Accordion>
@@ -148,13 +144,13 @@ function SidebarAdmin() {
                         </List>
                     </AccordionBody>
                 </Accordion>
- 
-                <ListItem>
+
+                <Link to='/admin/bookingmanagement/' ><ListItem>
                     <ListItemPrefix>
                         <InboxIcon className="h-5 w-5" />
                     </ListItemPrefix>
                     Booking Management
-                </ListItem>
+                </ListItem></Link>
             </List>
         </Card>
     );

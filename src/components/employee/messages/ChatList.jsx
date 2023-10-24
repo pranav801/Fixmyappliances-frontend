@@ -5,7 +5,7 @@ import axios from 'axios';
 import { decodedToken } from '../../../Context/auth';
 import { BaseUrl, defaultUserImageLink } from '../../../constants/constants';
 
-function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
+function ChatList({ selectedchat,setSelectedChat }) {
 
   const [chatlist, setChatList] = useState([]);
   const navigate = useNavigate();
@@ -14,20 +14,18 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
     getChatList();
   }, []);
 
-  const token = decodedToken('userJwt')
+  const token = decodedToken('employeeJwt')
 
-  const handleChatClick = (booking_id,chat_flag) => {
+  const handleChatClick = (booking_id) => {
     setSelectedChat(booking_id)
-    setChatFlag(chat_flag)
-    navigate(`/messaging/?booking=${booking_id}`)
+    navigate(`/employee/inbox/?booking=${booking_id}`)
 }
 
 
   const getChatList = () => {
-    axios.get(`${BaseUrl}/api/user-chat-list/${token.id}/`)
+    axios.get(`${BaseUrl}/api/employee-chat-list/${token.employee}/`)
       .then((response) => {
         setChatList(response.data);
-        console.log(response.data,'LLLLLLLIsttttttttttt()');
       })
       .catch((err) => {
         console.error(err);
@@ -56,7 +54,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
                   <div className="flex w-full flex-col gap-0.5">
                     <div className="flex items-center justify-between">
                       <Typography variant="h6" color="white">
-                        {chat.employee}
+                        {chat.user}
                       </Typography>
                     </div>
                     <p className='text-white text-xs'>Technician</p>
@@ -68,8 +66,8 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
               return (
                 <div
                   className="mx-0 my-3 flex items-center gap-4 p-2 shadow rounded-xl cursor-pointer transition-all duration-200"
-                  onClick={() => handleChatClick(chat.id,chat.chat_flag)}
-                >
+                  onClick={() => handleChatClick(chat.id)}
+                  >
                   <Avatar
                     size="md"
                     variant="circular"
@@ -79,7 +77,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
                   <div className="flex w-full flex-col gap-0.5">
                     <div className="flex items-center justify-between">
                       <Typography variant="h6" color="blue-gray">
-                        {chat.employee} 
+                        {chat.user}
                       </Typography>
                     </div>
                     <p className='text-blue-gray text-xs'>Technician</p>

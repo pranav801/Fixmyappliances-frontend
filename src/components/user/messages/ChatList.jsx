@@ -18,8 +18,9 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
 
   const handleChatClick = (booking_id,chat_flag) => {
     setSelectedChat(booking_id)
-    setChatFlag(chat_flag)
     navigate(`/messaging/?booking=${booking_id}`)
+    setChatFlag(chat_flag)
+    refresh(true)
 }
 
 
@@ -27,7 +28,6 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
     axios.get(`${BaseUrl}/api/user-chat-list/${token.id}/`)
       .then((response) => {
         setChatList(response.data);
-        console.log(response.data,'LLLLLLLIsttttttttttt()');
       })
       .catch((err) => {
         console.error(err);
@@ -37,7 +37,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
 
 
   return (
-    <div className='h-screen-90 w-2/6 m-3 mt-5 border border-gray-300 rounded-xl overflow-y-scroll px-2' >
+    <div className='h-[45rem] w-2/6 m-3 mt-5 border border-gray-300 rounded-xl overflow-y-scroll px-2' >
        
       <div>
         {
@@ -45,6 +45,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
             if (chat.id == selectedchat) {
               return (
                 <div
+                  key={chat.id}
                   className="mx-0 my-3 flex items-center gap-4 p-2 bg-indigo-400 shadow rounded-xl cursor-pointer transition-all duration-200"
                 >
                   <Avatar
@@ -59,7 +60,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
                         {chat.employee}
                       </Typography>
                     </div>
-                    <p className='text-white text-xs'>Technician</p>
+                    <p className='text-white text-xs'>{chat.service}</p>
                   </div>
                 </div>
               )
@@ -68,7 +69,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
               return (
                 <div
                   className="mx-0 my-3 flex items-center gap-4 p-2 shadow rounded-xl cursor-pointer transition-all duration-200"
-                  onClick={() => handleChatClick(chat.id,chat.chat_flag)}
+                  onClick={() => handleChatClick(chat.id,chat.chat_flag)} key={chat.id}
                 >
                   <Avatar
                     size="md"
@@ -82,7 +83,7 @@ function ChatList({ refresh,selectedchat,setSelectedChat,setChatFlag }) {
                         {chat.employee} 
                       </Typography>
                     </div>
-                    <p className='text-blue-gray text-xs'>Technician</p>
+                    <p className='text-blue-gray text-xs'>{chat.service}</p>
                   </div>
                 </div>
               )

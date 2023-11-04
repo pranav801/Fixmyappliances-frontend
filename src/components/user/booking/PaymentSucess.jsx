@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Avatar, Button, Typography } from "@material-tailwind/react";
 import { Link, useParams } from 'react-router-dom';
-import image from "../../../../assets/payment-success.png"
+import image from "../../../assets/payment-success.png"
 import axios from 'axios';
 
 function PaymentSucess() {

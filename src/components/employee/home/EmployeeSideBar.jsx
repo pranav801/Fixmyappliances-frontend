@@ -39,7 +39,7 @@ function EmployeeSideBar() {
     }
 
     return (
-        <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+        <Card className="h-[calc(100vh-5rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
 
             <List>
                 <Link to='/employee/home' ><ListItem>
@@ -56,9 +56,9 @@ function EmployeeSideBar() {
 
                     </ListItemPrefix>
                     Bookings
-                    <ListItemSuffix>
+                    {/* <ListItemSuffix>
                         <Chip value="7" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-                    </ListItemSuffix>
+                    </ListItemSuffix> */}
                 </ListItem>
                 </Link>
 
@@ -68,32 +68,33 @@ function EmployeeSideBar() {
                             <InboxIcon className="h-5 w-5" />
                         </ListItemPrefix>
                         Inbox
-                        <ListItemSuffix>
+                        {/* <ListItemSuffix>
                             <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
-                        </ListItemSuffix>
+                        </ListItemSuffix> */}
                     </ListItem>
                 </Link>
-
+                <Link to='/employee/profile' >
                 <ListItem>
                     <ListItemPrefix>
                         <UserCircleIcon className="h-5 w-5" />
                     </ListItemPrefix>
                     Profile
                 </ListItem>
-                <ListItem>
-                    <ListItemPrefix>
-                        <Cog6ToothIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Settings
-                </ListItem>
-                <ListItem onClick={handleLogOut} >
-                    <ListItemPrefix>
-                        <PowerIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Log Out
-                </ListItem>
-            </List>
-        </Card>
+            </Link>
+            {/* <ListItem>
+                <ListItemPrefix>
+                    <Cog6ToothIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Settings
+            </ListItem> */}
+            <ListItem onClick={handleLogOut} >
+                <ListItemPrefix>
+                    <PowerIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Log Out
+            </ListItem>
+        </List>
+        </Card >
     );
 }
 

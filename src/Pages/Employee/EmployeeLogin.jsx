@@ -58,7 +58,7 @@ function EmployeeLogin() {
                 <div>
                     <EmployeeSignIn />
                 </div>
-                <h2 className='text-2xl font-bold text-gray-500 pt-96 ms-70'>Change your life with FixMyAppliences ❤️</h2>
+                <h2 className='text-2xl font-bold text-gray-500 pt-32 ms-70'>Change your life with FixMyAppliences ❤️</h2>
 
             </div>
             <div className="bg-white flex flex-col justify-center items-center md:w-1/2">

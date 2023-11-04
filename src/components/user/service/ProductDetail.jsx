@@ -8,7 +8,7 @@ import {
     Button,
 } from "@material-tailwind/react";
 import { useNavigate, useParams } from 'react-router-dom';
-import AddressFill from '../home/booking/AddressFill';
+import AddressFill from '../booking/AddressFill';
 import { getLocal } from '../../../Context/auth';
 import { BaseUrl } from '../../../constants/constants';
 

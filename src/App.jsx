@@ -1,4 +1,3 @@
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Pages/Authentication/Signup'
 import UserLogin from './Pages/Authentication/UserLogin'
@@ -19,15 +18,17 @@ import EmployeeReqListPage from './Pages/Admin/EmployeeReqListPage'
 import EmployeeSignIn from './components/employee/EmployeeSignIn'
 import ProductList from './Pages/User/ProductList'
 import ProductDetailPage from './Pages/User/ProductDetailPage'
-import ListEmployee from './components/user/home/booking/ListEmployee'
-import PaymentSucess from './components/user/home/booking/PaymentSucess'
+import ListEmployee from './components/user/booking/ListEmployee'
+import PaymentSucess from './components/user/booking/PaymentSucess'
 import ProfilePage from './Pages/User/ProfilePage'
 import BookingListPage from './Pages/User/BookingListPage'
 import MessagePage from './Pages/User/MessagePage'
 import EmpBookingListPage from './Pages/Employee/booking/EmpBookingListPage'
 import AdminBookingListPage from './Pages/Admin/AdminBookingListPage'
 import EmployeeInbox from './Pages/Employee/EmployeeInbox'
-
+import EmployeeProfilePage from './Pages/Employee/EmployeeProfilePage'
+import ComplaintListPage from './Pages/Admin/ComplaintListPage'
+import ReviewListPage from './Pages/Admin/ReviewListPage'
 
 function App() {
 
@@ -35,7 +36,6 @@ function App() {
     <div className='main'>
       <Router>
         <Routes>
-
           <Route path='/' element={<UserHome />} />
           <Route path='login/' element={<UserLogin />} />
           <Route path='register/' element={<Signup />} />
@@ -55,6 +55,8 @@ function App() {
           <Route path='admin/productmanagement' element={<ProductPage />} />
           <Route path='admin/servicemanagement' element={<ServicePage/>} />
           <Route path='admin/bookingmanagement' element={<AdminBookingListPage/>} />
+          <Route path='admin/complaintmanagement' element={<ComplaintListPage/>} />
+          <Route path='admin/reviewmanagement' element={<ReviewListPage/>} />
           
           <Route path='employee/login' element={<EmployeeLogin />} />
           <Route path='employee/home' element={<EmployeeHome />} />
@@ -62,6 +64,7 @@ function App() {
           <Route path='employee/signin' element={<EmployeeSignIn/>} />
           <Route path='employee/bookinglist' element={<EmpBookingListPage/>} />
           <Route path='/employee/inbox/' element={<EmployeeInbox/>} />
+          <Route path='/employee/profile/' element={<EmployeeProfilePage/>} />
 
           <Route path='service/booking/listemployee/:serviceId' element={<ListEmployee/>} />
           <Route path='service/payment/' element={<PaymentSucess/>} />

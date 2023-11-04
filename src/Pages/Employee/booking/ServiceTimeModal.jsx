@@ -33,6 +33,7 @@ function ServiceTimeModal({ booking }) {
         })
             .then(response => {
                 toast.success('Service Date and Time updated successfully.');
+                setOpen(false)
                 console.log('Service Date and Time updated:', response.data);
             })
             .catch(error => {

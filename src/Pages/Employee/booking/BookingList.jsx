@@ -180,6 +180,8 @@ function BookingList() {
                                         </Typography>
                                     </td>
                                     <td className={classes}>
+                                        {book.service_date ? 
+                                        
                                         <div className="flex flex-col">
                                             <Typography
                                                 variant="small"
@@ -196,6 +198,15 @@ function BookingList() {
                                                 {book.service_time}
                                             </Typography>
                                         </div>
+                                        :
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal"
+                                        >
+                                            -
+                                        </Typography>
+                                    }
                                     </td>
 
 

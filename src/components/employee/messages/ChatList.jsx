@@ -5,7 +5,7 @@ import axios from 'axios';
 import { decodedToken } from '../../../Context/auth';
 import { BaseUrl, defaultUserImageLink } from '../../../constants/constants';
 
-function ChatList({ selectedchat,setSelectedChat }) {
+function ChatList({ selectedchat, setSelectedChat }) {
 
   const [chatlist, setChatList] = useState([]);
   const navigate = useNavigate();
@@ -16,15 +16,14 @@ function ChatList({ selectedchat,setSelectedChat }) {
 
   const token = decodedToken('employeeJwt')
 
-  const handleChatClick = (booking_id) => {
+  const handleChatClick = (booking_id, user_id) => {
     setSelectedChat(booking_id)
     navigate(`/employee/inbox/?booking=${booking_id}`)
-}
-
-
+  }
   const getChatList = () => {
     axios.get(`${BaseUrl}/api/employee-chat-list/${token.employee}/`)
       .then((response) => {
+        console.log('Chat list ', chatlist);
         setChatList(response.data);
       })
       .catch((err) => {
@@ -32,17 +31,16 @@ function ChatList({ selectedchat,setSelectedChat }) {
       });
   };
 
-
-
   return (
-    <div className='h-screen-90 w-2/6 m-3 mt-5 border border-gray-300 rounded-xl overflow-y-scroll px-2' >
-       
+    <div className='h-[45rem] w-2/6 m-3 mt-5 border border-gray-300 rounded-xl overflow-y-scroll px-2' >
+
       <div>
         {
           chatlist.map((chat) => {
             if (chat.id == selectedchat) {
               return (
                 <div
+                  key={chat.id}
                   className="mx-0 my-3 flex items-center gap-4 p-2 bg-indigo-400 shadow rounded-xl cursor-pointer transition-all duration-200"
                 >
                   <Avatar
@@ -57,7 +55,7 @@ function ChatList({ selectedchat,setSelectedChat }) {
                         {chat.user}
                       </Typography>
                     </div>
-                    <p className='text-white text-xs'>Technician</p>
+                    <p className='text-white text-xs'>{chat.service}</p>
                   </div>
                 </div>
               )
@@ -66,8 +64,11 @@ function ChatList({ selectedchat,setSelectedChat }) {
               return (
                 <div
                   className="mx-0 my-3 flex items-center gap-4 p-2 shadow rounded-xl cursor-pointer transition-all duration-200"
-                  onClick={() => handleChatClick(chat.id)}
-                  >
+                  onClick={() => {
+                    handleChatClick(chat.id, chat.user_id)
+                    console.log('chattttttttttttttttttttttttt -> ',chat);
+                  }} key={chat.id}
+                >
                   <Avatar
                     size="md"
                     variant="circular"
@@ -80,7 +81,7 @@ function ChatList({ selectedchat,setSelectedChat }) {
                         {chat.user}
                       </Typography>
                     </div>
-                    <p className='text-blue-gray text-xs'>Technician</p>
+                    <p className='text-blue-gray text-xs'>{chat.service} </p>
                   </div>
                 </div>
               )

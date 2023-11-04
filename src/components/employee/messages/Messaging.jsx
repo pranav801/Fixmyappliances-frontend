@@ -4,15 +4,14 @@ import axios from 'axios';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import { useRef } from 'react';
 import { decodedToken } from '../../../Context/auth';
-import { BaseUrl } from '../../../constants/constants';
+import { BaseUrl, defaultUserImageLink } from '../../../constants/constants';
 
 
 
-const Chat = ({ selectedchat }) => {
+const Chat = ({ selectedchat,senderid,setSenderId }) => {
 
-    const [employeedetails, setemployeeDetails] = useState({})
     const [senderdetails, setSenderDetails] = useState({});
-    const [senderid, setSenderId] = useState(null);
+    const [employeedetails, setemployeeDetails] = useState({})
     const [employeeid, setemployeeId] = useState(null)
     const [clientstate, setClientState] = useState('');
     const [messages, setMessages] = useState([]);
@@ -24,23 +23,20 @@ const Chat = ({ selectedchat }) => {
                 if (response.status == 200) {
                     setemployeeId(response.data.id)
                     setemployeeDetails(response.data)
+                    setSenderDetails({username:response.data.user,email:response.data.user_email,id:response.data.user.user_id})
+                    console.log(employeedetails,'Employee<---');
+                    console.log('emp and user details:::',response.data);
                 }
             })
     }
 
 
     const setSenderProfile = async () => {
-        const token = decodedToken('userJwt')
-        axios.get(`${BaseUrl}/api/user-profile-detail/${token.id}/`)
-            .then((response) => {
-                if (response.status == 200) {
-                    setSenderDetails(response.data)
-                }
-            })
+        const token = decodedToken('employeeJwt')
     }
 
     useEffect(() => {
-        const token = decodedToken('userJwt')
+        const token = decodedToken('employeeJwt')
         setSenderId(token.id)
         setEmployeeProfileDetails()
         setSenderProfile()
@@ -109,21 +105,24 @@ const Chat = ({ selectedchat }) => {
 
     return (
         <>
-            <div className="min-h-screen w-full bg-gray-100 flex flex-col">
+            <div className="w-full bg-gray-100 flex flex-col">
                 {!selectedchat ?
                     <div className='h-full flex justify-center items-center font-bold' ><h1>Select a message to send</h1></div>
                     :
                     <>
                         <div className="bg-white py-4 px-8 shadow-md flex items-center">
                             <img
-                                src={employeedetails?.pic}
+                                src={senderdetails?.pic? senderdetails?.pic : defaultUserImageLink}
                                 alt="employee's Avatar"
                                 className="w-10 h-10 rounded-full mr-4"
                             />
-                            <h2 className="text-xl">{employeedetails?.username}</h2>
+                            <h2 className="text-xl">{senderdetails?.username}</h2>
                         </div>
 
-                        <div className="flex-grow p-4 overflow-auto">
+                        <div 
+                         className="flex h-[45rem] flex-col space-y-4 p-3 overflow-y-auto scrolling-touch"
+                        // className="flex-grow p-4 overflow-auto"
+                        >
                             <div className="mb-2">
                                 {
 
@@ -137,13 +136,13 @@ const Chat = ({ selectedchat }) => {
 
                                                     <div className="mr-2">
                                                         <img
-                                                            src={BaseUrl + employeedetails?.pic}
+                                                            src={senderdetails?.pic?BaseUrl + senderdetails?.pic : defaultUserImageLink}
                                                             alt="Sender's Avatar"
                                                             className="w-8 h-8 rounded-full"
                                                         />
                                                     </div>
                                                     <div className="bg-blue-500 text-white py-2 px-4 rounded-lg">
-                                                        <p className="text-sm font-medium">{employeedetails?.username}</p>
+                                                        <p className="text-sm font-medium">{senderdetails?.username}</p>
                                                         {message.message}
                                                     </div>
 
@@ -156,13 +155,13 @@ const Chat = ({ selectedchat }) => {
 
                                                     <div className="ml-2">
                                                         <img
-                                                            src={senderdetails?.pic}
+                                                            src={employeedetails?.pic?employeedetails?.pic:defaultUserImageLink}
                                                             alt="Receiver's Avatar"
                                                             className="w-8 h-8 rounded-full"
                                                         />
                                                     </div>
                                                     <div className="bg-gray-300 py-2 px-4 rounded-lg">
-                                                        <p className="text-sm font-medium">{senderdetails?.username}</p>
+                                                        <p className="text-sm font-medium">{employeedetails?.username}</p>
                                                         {message.message}
                                                     </div>
                                                 </div>

@@ -151,6 +151,18 @@ function SidebarAdmin() {
                     </ListItemPrefix>
                     Booking Management
                 </ListItem></Link>
+                <Link to='/admin/complaintmanagement/' ><ListItem>
+                    <ListItemPrefix>
+                        <InboxIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Complaint Management
+                </ListItem></Link>
+                <Link to='/admin/reviewmanagement/' ><ListItem>
+                    <ListItemPrefix>
+                        <InboxIcon className="h-5 w-5" />
+                    </ListItemPrefix>
+                    Review Management
+                </ListItem></Link>
             </List>
         </Card>
     );

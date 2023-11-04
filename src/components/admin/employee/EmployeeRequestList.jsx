@@ -47,7 +47,6 @@ function EmployeeRequestList() {
   const handleAccept = (employeeId) => {
     axios.patch(`http://localhost:8000/su/employeeRequest/${employeeId}/accept/`)
       .then(response => {
-        // Handle success, you may want to update the UI or show a success message
         toast.success(response.data.message);
         fetchEmployeeData(); // Refresh the employee list
       })
@@ -59,7 +58,6 @@ function EmployeeRequestList() {
   const handleReject = (employeeId) => {
     axios.patch(`http://localhost:8000/su/employeeRequest/${employeeId}/reject/`)
       .then(response => {
-        // Handle success, you may want to update the UI or show a success message
         toast.success(response.data.message);
         fetchEmployeeData(); // Refresh the employee list
       })

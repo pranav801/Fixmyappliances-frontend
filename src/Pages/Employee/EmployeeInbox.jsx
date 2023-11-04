@@ -7,6 +7,8 @@ import EmployeeNavBar from '../../components/employee/home/EmployeeNavBar'
 function EmployeeInbox() {
   const queryParams = new URLSearchParams(location.search);
   const [selectedchat, setSelectedChat] = useState(queryParams.get('booking'))
+  const [senderid, setSenderId] = useState(null);
+
   return (
     <div>
 
@@ -17,7 +19,7 @@ function EmployeeInbox() {
           <div className='flex-1 px-4  overflow-y-auto'>
           <div className='flex max-w-5xl mx-auto m-0 max-h-screen-80rem' >
               <ChatList  selectedchat={selectedchat} setSelectedChat={setSelectedChat}  />
-              <Messaging selectedchat={selectedchat} />
+              <Messaging senderid={senderid} setSenderId={setSenderId} selectedchat={selectedchat} />
             </div>
           </div>
         </div>

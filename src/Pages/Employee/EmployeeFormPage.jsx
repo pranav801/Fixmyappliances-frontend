@@ -78,7 +78,7 @@ function EmployeeFormPage() {
 
     try {
       const response = await axios.patch(`http://localhost:8000/emp/update-profile/${emp}/`, backend_data1);
-      setProducts(response.data);
+      // setProducts(response.data);
     } catch (error) {
       console.error('Update 1 error:', error);
     }
@@ -96,9 +96,9 @@ function EmployeeFormPage() {
 
     try {
       const response = await axios.patch(`http://localhost:8000/emp/complete-profile/${emp}/`, backend_data2);
-      setProducts(response.data);
+      // setProducts(response.data);
       navigate('/employee/login');
-      location.reload()
+      // location.reload()
       toast.success('Your request got submited');
     } catch (error) {
       console.error('Update 2 error:', error);
@@ -130,7 +130,7 @@ function EmployeeFormPage() {
             <div className="w-full">
               <Select label="Select Category" onChange={handleCategoryChange}>
                 {category.map((cat_item) => (
-                  <Option value={cat_item.id}>{cat_item.category_name}</Option>
+                  <Option key={cat_item.id} value={`${cat_item.id}`}>{cat_item.category_name}</Option>
                 ))}
               </Select>
             </div>

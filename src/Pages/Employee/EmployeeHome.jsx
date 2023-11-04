@@ -1,6 +1,7 @@
 import React from 'react'
 import EmployeeNavBar from '../../components/employee/home/EmployeeNavBar'
 import EmployeeSideBar from '../../components/employee/home/EmployeeSideBar'
+import EmployeeDashboard from '../../components/employee/dashboard/EmployeeDashboard'
 
 function EmployeeHome() {
     return (
@@ -12,9 +13,10 @@ function EmployeeHome() {
                     <EmployeeSideBar />
                     <div className='flex-1 px-4  overflow-y-auto'>
 
-                        <div className="flex justify-center items-center h-screen">
-                            <h1 className="text-4xl">Employee Home</h1>
-                        </div>
+                        
+                            {/* <h1 className="text-4xl">Employee Home</h1> */}
+                            <EmployeeDashboard/>
+                        
                     </div>
                 </div>
             </div>

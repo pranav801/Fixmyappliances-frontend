@@ -24,15 +24,22 @@ const googleAuthentication = (value) => {
 
 const createCheckoutSession = (values) => {
     return userAxiosInstance.post(
-      `user/task-subscription-checkout-session/`,
-      values,
-      { withCredentials: true }
+        `user/task-subscription-checkout-session/`,
+        values,
+        { withCredentials: true }
     );
-  };
+};
+
+const isUserAuth = (id) => {
+    return userAxiosInstance.get(`/api/is-user-auth/${id}/`, {
+        withCredentials: true,
+    });
+};
 
 export {
     googleAuthentication,
     userLogin,
     userSignup,
     createCheckoutSession,
+    isUserAuth,
 }

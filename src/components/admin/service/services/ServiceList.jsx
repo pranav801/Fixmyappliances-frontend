@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   CardHeader,
@@ -110,7 +108,7 @@ function ServiceList() {
                 </td>
                 <td className="p-4 ">
                   <Typography variant="small" color="blue-gray">
-                    {service.service_cat}
+                    {service.service_product.product_name}
 
                   </Typography>
                 </td>

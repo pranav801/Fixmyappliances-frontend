@@ -1,12 +1,12 @@
 import React from 'react'
 import UserNavBar from '../../components/user/home/UserNavBar'
-import BookingList from '../../components/user/home/booking/BookingList'
+import BookingList from '../../components/user/booking/BookingList'
 
 function BookingListPage() {
   return (
     <div>
         <UserNavBar/>
-        <div className='p-10'>
+        <div className='px-14 '>
 
         <BookingList/>
         </div>

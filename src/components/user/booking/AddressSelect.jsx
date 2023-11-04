@@ -54,10 +54,11 @@ function AddressSelect({ selectAddress, address }) {
                                     className={`border-b-0 transition-colors ${open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
                                         }`}
                                 >
-                                    {address.fullname}
+                                    {address.fullname},{address.house_name}
                                 </AccordionHeader>
                                 <AccordionBody className="pt-0 text-base font-normal">
-                                    {address.house_name}
+                                {address.street}, {address.city},
+                                {address.state}, PIN: {address.pincode}
                                 </AccordionBody>
                             </Accordion>
                         </div>

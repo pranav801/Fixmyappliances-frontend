@@ -32,7 +32,7 @@ function EmployeeSignIn() {
                 setLoggedIn(true);
                 console.log(response.data);
 
-                localStorage.setItem('employeeJwt', response.data.access);
+                localStorage.setItem('employeeJwt', JSON.stringify(response.data));
                 // localStorage.setItem('refreshToken', response.data.refresh_token);
                 navigate('../employee/home/')
             } else {

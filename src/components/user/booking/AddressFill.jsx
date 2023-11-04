@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AddressAdd from './AddressAdd';
 import AddressSelect from './AddressSelect';
-import { decodedToken } from '../../../../Context/auth';
+import { decodedToken } from '../../../Context/auth';
 
 function AddressFill({ open, handleOpen, serviceId }) {
 

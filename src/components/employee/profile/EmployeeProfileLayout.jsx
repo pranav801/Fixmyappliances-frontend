@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { decodedToken } from '../../../Context/auth';
-import { toast } from 'react-toastify';
+import React, { useEffect, useState } from 'react'
+import { decodedToken } from '../../../Context/auth'
 import axios from 'axios';
 import { Button } from '@material-tailwind/react';
 
-function ProfileLayout() {
-    const token = decodedToken('userJwt');
-    const [userData, setUserData] = useState([]);
+function EmployeeProfileLayout() {
+    const token = decodedToken('employeeJwt')
+
+    const [empData, setEmpData] = useState([]);
     const [isEditMode, setIsEditMode] = useState(false);
-    const [updatedUserData, setUpdatedUserData] = useState({});
+    const [updatedEmpData, setUpdatedEmpData] = useState({});
+    console.log(token);
 
-
-    const fetchUserData = () => {
+    const fetchEmpData = () => {
         axios
-            .get('http://localhost:8000/api/user-profile-detail/' + token.id)
+            .get('http://localhost:8000/emp/employeeDetail/' + token.id)
             .then((response) => {
-                setUserData(response.data);
+                console.log('empData: ', response.data);
+                setEmpData(response.data);
             })
             .catch((err) => {
                 console.log('error: ', err);
@@ -25,21 +26,22 @@ function ProfileLayout() {
 
 
     useEffect(() => {
-        fetchUserData();
+        fetchEmpData();
     }, [token.id]);
 
     const handleEditClick = () => {
         setIsEditMode(true);
-        setUpdatedUserData({ ...userData });
+        setUpdatedEmpData({ ...empData });
     };
 
     const handleSaveClick = () => {
         axios
-            .patch('http://localhost:8000/api/users-profile-update/' + token.id, updatedUserData)
+            .patch('http://localhost:8000/emp/profile-edit/' + token.id, updatedEmpData)
             .then((response) => {
                 setIsEditMode(false);
-                setUserData(response.data);
-                fetchUserData()
+                setEmpData(response.data);
+                console.log(response.data);
+                fetchEmpData()
 
 
             })
@@ -52,18 +54,17 @@ function ProfileLayout() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setUpdatedUserData({
-            ...updatedUserData,
+        setUpdatedEmpData({
+            ...updatedEmpData,
             [name]: value,
         });
     };
-
     return (
         <div>
             <div className="p-4 font-bold">
                 <h1>Profile Info</h1>
             </div>
-            {userData && (
+            {empData && (
                 <div className="px-6 pb-10">
                     <div className="my-2 py-3 border-b border-blueGray-200 text-gray-700 text-center flex justify-between">
                         <h4>First name</h4>
@@ -71,11 +72,11 @@ function ProfileLayout() {
                             <input
                                 type="text"
                                 name="first_name"
-                                value={updatedUserData.first_name}
+                                value={updatedEmpData.first_name?updatedEmpData.first_name:empData.employee?.first_name}
                                 onChange={handleInputChange}
                             />
                         ) : (
-                            <h4>{userData.first_name}</h4>
+                            <h4>{empData.employee?.first_name}</h4>
                         )}
                         {isEditMode ? null : (
                             <span className="text-indigo-600 cursor-pointer" onClick={handleEditClick}>
@@ -89,11 +90,11 @@ function ProfileLayout() {
                             <input
                                 type="text"
                                 name="last_name"
-                                value={updatedUserData.last_name}
+                                value={updatedEmpData.employee.last_name}
                                 onChange={handleInputChange}
                             />
                         ) : (
-                            <h4>{userData.last_name}</h4>
+                            <h4>{empData.employee?.last_name}</h4>
                         )}
                         {isEditMode ? null : (
                             <span className="text-indigo-600 cursor-pointer" onClick={handleEditClick}>
@@ -108,11 +109,11 @@ function ProfileLayout() {
                                 type="text"
                                 name="phone"
                                 disabled
-                                value={userData.email}
+                                value={empData.employee.email}
 
                             />
                         ) : (
-                            <h4>{userData.email}</h4>
+                            <h4>{empData.employee?.email}</h4>
                         )}
                         {isEditMode ? null : (
                             <span className="text-indigo-600 cursor-pointer" onClick={handleEditClick} >
@@ -126,11 +127,11 @@ function ProfileLayout() {
                             <input
                                 type="text"
                                 name="phone"
-                                value={updatedUserData.phone}
+                                value={updatedEmpData.employee.phone}
                                 onChange={handleInputChange}
                             />
                         ) : (
-                            <h4>{userData.phone}</h4>
+                            <h4>{empData.employee?.phone}</h4>
                         )}
                         {isEditMode ? null : (
                             <span className="text-indigo-600 cursor-pointer" onClick={handleEditClick}>
@@ -145,8 +146,27 @@ function ProfileLayout() {
                     ) : null}
                 </div>
             )}
+            <div className="p-4 font-bold">
+                <h1>Professional Info</h1>
+            </div>
+            <div className="px-6 pb-10">
+                <div className="my-2 py-3 border-b border-blueGray-200 text-gray-700 text-center flex justify-between">
+                    <h4>Service Category</h4>
+                    <h4>{empData.category?.category_name}</h4>
+                </div>
+            </div>
+            <div className="px-6 pb-10">
+                <div className="my-2 py-3 border-b border-blueGray-200 text-gray-700 text-center flex justify-between">
+                    <h4>Service Products</h4>
+                    {empData.product?.map((prod) => (
+                        <h4 key={prod.id}>{prod.product_name}</h4>
+                    ))}
+                </div>
+            </div>
+
         </div>
-    );
+
+    )
 }
 
-export default ProfileLayout;
+export default EmployeeProfileLayout

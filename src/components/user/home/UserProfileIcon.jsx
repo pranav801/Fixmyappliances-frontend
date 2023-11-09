@@ -60,7 +60,6 @@ function UserProfileIcon() {
         axios.get(`http://localhost:8000/api/user-profile-detail/${token?.id}/`)
             .then((response) => {
                 setProfile(response.data);
-                console.log('profiel',response.data);
             })
             .catch((error) => {
                 console.error('Error fetching profile:', error);

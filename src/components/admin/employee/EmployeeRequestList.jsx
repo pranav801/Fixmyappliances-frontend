@@ -15,6 +15,7 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AdminUrl } from '../../../constants/constants';
 
 
 function EmployeeRequestList() {
@@ -45,7 +46,7 @@ function EmployeeRequestList() {
 
   
   const handleAccept = (employeeId) => {
-    axios.patch(`http://localhost:8000/su/employeeRequest/${employeeId}/accept/`)
+    axios.patch(`${AdminUrl}/employeeRequest/${employeeId}/accept/`)
       .then(response => {
         toast.success(response.data.message);
         fetchEmployeeData(); // Refresh the employee list
@@ -56,7 +57,7 @@ function EmployeeRequestList() {
   };
   
   const handleReject = (employeeId) => {
-    axios.patch(`http://localhost:8000/su/employeeRequest/${employeeId}/reject/`)
+    axios.patch(`${AdminUrl}/employeeRequest/${employeeId}/reject/`)
       .then(response => {
         toast.success(response.data.message);
         fetchEmployeeData(); // Refresh the employee list

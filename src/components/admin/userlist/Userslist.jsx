@@ -20,6 +20,7 @@ import {
 import { adminManageUser, adminUserDetails } from '../../../services/adminApi'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AdminUrl } from '../../../constants/constants';
 
 
 
@@ -62,9 +63,7 @@ function Userslist() {
   }
 
   async function searchUser(keyword) {
-    const request = await axios.get(
-      `http://localhost:8000/su/adminsearchUser/?search=${keyword}`
-    );
+    const request = await axios.get(`${AdminUrl}/adminsearchUser/?search=${keyword}`);
     setUsers(request.data);
     setUsersFound(request.data.length > 0);
   }

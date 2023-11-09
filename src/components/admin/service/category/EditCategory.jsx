@@ -9,6 +9,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { ServiceUrl } from "../../../../constants/constants";
 
 export function EditCategory({ category }) {
   const [open, setOpen] = React.useState(false);
@@ -30,7 +31,7 @@ export function EditCategory({ category }) {
     formData.append('category_img', categoryImg);
 
     try {
-      await axios.put(`http://localhost:8000/service/categories/edit/${category.id}/`, formData, {
+      await axios.put(`${ServiceUrl}/categories/edit/${category.id}/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

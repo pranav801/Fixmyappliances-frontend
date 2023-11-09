@@ -11,6 +11,7 @@ import {
     Option,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { ServiceUrl } from "../../../../constants/constants";
 
 export function AddProduct() {
     const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ export function AddProduct() {
             formData.append('product_img', product_img);
             
             try {
-                await axios.post('http://localhost:8000/service/product/create/', formData, {
+                await axios.post(`${ServiceUrl}/product/create/`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },

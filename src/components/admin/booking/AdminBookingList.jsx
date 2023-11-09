@@ -11,6 +11,7 @@ import {
 
 } from "@material-tailwind/react";
 import axios from 'axios';
+import { BookingUrl } from '../../../constants/constants';
 
 
 function AdminBookingList() {
@@ -18,12 +19,10 @@ function AdminBookingList() {
 
     const [booking, setBooking] = useState([]);
 
-
-
     useEffect(() => {
         const fetchBooking = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/booking/admin-booking-list/');
+                const response = await axios.get(`${BookingUrl}/admin-booking-list/`);
                 setBooking(response.data);
             } catch (error) {
                 console.error('Error fetching service:', error);

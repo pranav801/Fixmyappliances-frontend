@@ -14,17 +14,17 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import ReviewDeleteModal from './ReviewDeleteModal';
+import { BookingUrl } from '../../../constants/constants';
 
 
 function ReviewList() {
     const TABLE_HEAD = ["Customer", "Email", "Product", "rating", "Subject", "Content", "Delete"];
 
     const [reviews, setReviews] = useState([]);
-
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/booking/review-list-admin/');
+                const response = await axios.get(`${BookingUrl}/review-list-admin/`);
                 setReviews(response.data);
             } catch (error) {
                 console.error('Error fetching reviews:', error);

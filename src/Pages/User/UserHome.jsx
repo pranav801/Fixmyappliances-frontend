@@ -25,7 +25,7 @@ function UserHome() {
   }, []);
 
   return (
-    <>
+      <div>
       <div className="w-full h-96 relative" style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
         {isSticky ? (
           <div className="sticky top-0 z-50 w-full">
@@ -48,7 +48,7 @@ function UserHome() {
         <ServiceCard />
       </div>
       <HomeFooter />
-    </>
+      </div>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardBody, Rating, Typography } from '@material-tailwind/react';
 import axios from 'axios';
+import { AdminUrl } from '../../../constants/constants';
 
 function AdminDashboard() {
     const [data, setData] = useState({
@@ -17,7 +18,7 @@ function AdminDashboard() {
     });
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/su/dashboard/') 
+        axios.get(`${AdminUrl}/dashboard/`) 
             .then((response) => {
                 setData(response.data);
             })

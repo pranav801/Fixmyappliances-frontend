@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { AddProduct } from './AddProduct';
 import { EditProduct } from './EditProduct';
+import { ServiceUrl } from '../../../../constants/constants';
 
 
 
@@ -27,7 +28,7 @@ function ProductList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/service/product/');
+        const response = await axios.get(`${ServiceUrl}/product/`);
         setProducts(response.data);
         console.log(response.data)
       } catch (error) {

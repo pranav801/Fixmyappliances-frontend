@@ -14,6 +14,7 @@ import {
 import axios from 'axios';
 import { AddCategory } from './AddCategory';
 import { EditCategory } from './EditCategory';
+import { ServiceUrl } from '../../../../constants/constants';
 
 
 
@@ -43,7 +44,7 @@ function ServiceCategory() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/service/categories/delete/${id}/`);
+      await axios.delete(`${ServiceUrl}/categories/delete/${id}/`);
       alert('Category deleted successfully');
     } catch (error) {
       console.error('Error deleting category', error);

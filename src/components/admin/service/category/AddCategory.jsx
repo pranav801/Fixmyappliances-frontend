@@ -9,6 +9,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { ServiceUrl } from "../../../../constants/constants";
 
 export function AddCategory() {
   const [open, setOpen] = React.useState(false);
@@ -26,7 +27,7 @@ export function AddCategory() {
     formData.append('category_img', category_img);
 
     try {
-      await axios.post('http://localhost:8000/service/categories/create/', formData, {
+      await axios.post(`${ServiceUrl}/categories/create/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

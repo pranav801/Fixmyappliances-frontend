@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input } from "@material-tailwind/react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 
 function EmployeeSignIn() {
     const navigate = useNavigate()
@@ -12,43 +12,36 @@ function EmployeeSignIn() {
     });
 
     const { email, password } = formData;
-    const [loggedIn, setLoggedIn] = useState(false); // To track login status
-
+    const [loggedIn, setLoggedIn] = useState(false);
+    
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
     const handleLogin = () => {
-        // Perform the login logic here
-        // You can make an API request to your Django backend for authentication
-
-        // Example API request using axios
         axios.post('http://localhost:8000/emp/login/', {
             email,
             password,
         })
-        .then((response) => {
-            if (response.status === 200) {
-                setLoggedIn(true);
-                console.log(response.data);
-
-                localStorage.setItem('employeeJwt', JSON.stringify(response.data));
-                // localStorage.setItem('refreshToken', response.data.refresh_token);
-                navigate('../employee/home/')
-            } else {
+            .then((response) => {
+                if (response.status === 200) {
+                    setLoggedIn(true);
+                    localStorage.setItem('employeeJwt', JSON.stringify(response.data));
+                    navigate('../employee/home/')
+                } else {
+                    setLoggedIn(false);
+                }
+            })
+            .catch((error) => {
+                console.error('Login error:', error);
+                toast.error('some error occured')
                 setLoggedIn(false);
-            }
-        })
-        .catch((error) => {
-            console.error('Login error:', error);
-            setLoggedIn(false);
-        });
+            });
     };
 
     return (
         <div>
+            
             <h2 className='pt-5 '>SignIn Here if you are already registered &#x1F447;</h2>
-
             <div className="w-72 pt-5">
                 <Input
                     type="email"

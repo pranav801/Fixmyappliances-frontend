@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardBody, Typography } from '@material-tailwind/react';
 import axios from 'axios';
 import { decodedToken } from '../../../Context/auth';
+import { EmployeeUrl } from '../../../constants/constants';
 
 function EmployeeDashboard() {
     const [data, setData] = useState({
@@ -16,7 +17,7 @@ function EmployeeDashboard() {
     const token = decodedToken('employeeJwt')
     console.log('emp',token.employee);
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/emp/employee-dashboard/${token.employee}`) 
+        axios.get(`${EmployeeUrl}/employee-dashboard/${token.employee}`) 
             .then((response) => {
                 setData(response.data);
             })

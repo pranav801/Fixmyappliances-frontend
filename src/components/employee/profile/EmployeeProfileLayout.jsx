@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { decodedToken } from '../../../Context/auth'
 import axios from 'axios';
 import { Button } from '@material-tailwind/react';
+import PasswordChangeModal from './PasswordChangeModal';
+import { EmployeeUrl } from '../../../constants/constants';
 
 function EmployeeProfileLayout() {
     const token = decodedToken('employeeJwt')
@@ -9,11 +11,14 @@ function EmployeeProfileLayout() {
     const [empData, setEmpData] = useState([]);
     const [isEditMode, setIsEditMode] = useState(false);
     const [updatedEmpData, setUpdatedEmpData] = useState({});
-    console.log(token);
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => setOpen(!open);
 
     const fetchEmpData = () => {
         axios
-            .get('http://localhost:8000/emp/employeeDetail/' + token.id)
+            .get(`${EmployeeUrl}/employeeDetail/` + token.id)
             .then((response) => {
                 console.log('empData: ', response.data);
                 setEmpData(response.data);
@@ -36,7 +41,7 @@ function EmployeeProfileLayout() {
 
     const handleSaveClick = () => {
         axios
-            .patch('http://localhost:8000/emp/profile-edit/' + token.id, updatedEmpData)
+            .patch(`${EmployeeUrl}/profile-edit/` + token.id, updatedEmpData)
             .then((response) => {
                 setIsEditMode(false);
                 setEmpData(response.data);
@@ -146,6 +151,11 @@ function EmployeeProfileLayout() {
                     ) : null}
                 </div>
             )}
+            <div className='p-5'>
+                <h1 className='text-light-blue-800 cursor-pointer underline' onClick={handleOpen} >Change password</h1>
+                <PasswordChangeModal open={open} handleOpen={handleOpen} userid={token.id}/>
+
+            </div>
             <div className="p-4 font-bold">
                 <h1>Professional Info</h1>
             </div>

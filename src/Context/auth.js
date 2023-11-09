@@ -5,11 +5,15 @@ export function getLocal(tokenName) {
     return response
 }
 
-export function decodedToken(tokenName){
-    
-    const token = getLocal(tokenName)
-    const decoded = jwtDecode(token)
-    return decoded
+export function decodedToken(tokenName) {
+    const token = getLocal(tokenName);
+
+    if (token) {
+        const decoded = jwtDecode(token);
+        return decoded;
+    } else {
+        return null;
+    }
 }
 
 export default function isLogged(tokenName) {

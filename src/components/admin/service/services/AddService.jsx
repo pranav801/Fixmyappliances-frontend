@@ -11,6 +11,7 @@ import {
     Option,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { ServiceUrl } from "../../../../constants/constants";
 
 export function AddService() {
     const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ export function AddService() {
     const [service_img, setServiceImg] = useState(null)
 
     const callSetProducts = () => {
-        axios.get('http://localhost:8000/service/product/').then((response) => {
+        axios.get(`${ServiceUrl}/product/`).then((response) => {
             setProducts(response.data)
         }).catch((error) => {
             console.error('Error fetching products:', error);

@@ -11,6 +11,7 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { BookingUrl } from '../../../constants/constants';
 
 
 function ComplaintList() {
@@ -23,7 +24,7 @@ function ComplaintList() {
     useEffect(() => {
         const fetchComplaint = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/booking/complaint-list-admin/');
+                const response = await axios.get(`${BookingUrl}/complaint-list-admin/`);
                 setComplaint(response.data);
             } catch (error) {
                 console.error('Error fetching complaint:', error);
@@ -37,7 +38,7 @@ function ComplaintList() {
     const handleStatusChange = (e, bookingId) => {
         const selectedStatus = e.target.value;
 
-        axios.patch(`http://localhost:8000/booking/update-complaint-status/${bookingId}/`, {
+        axios.patch(`${BookingUrl}/update-complaint-status/${bookingId}/`, {
             status: selectedStatus
         })
             .then(response => {

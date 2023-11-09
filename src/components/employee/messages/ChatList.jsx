@@ -66,7 +66,6 @@ function ChatList({ selectedchat, setSelectedChat }) {
                   className="mx-0 my-3 flex items-center gap-4 p-2 shadow rounded-xl cursor-pointer transition-all duration-200"
                   onClick={() => {
                     handleChatClick(chat.id, chat.user_id)
-                    console.log('chattttttttttttttttttttttttt -> ',chat);
                   }} key={chat.id}
                 >
                   <Avatar

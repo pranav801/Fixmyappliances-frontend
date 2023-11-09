@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { BookingUrl } from "../../../constants/constants";
 
 function ReviewDeleteModal({ pk }) {
     const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ function ReviewDeleteModal({ pk }) {
 
     const handleDelete = () => {
         
-        axios.delete(`http://127.0.0.1:8000/booking/review-delete/${pk}/`, {
+        axios.delete(`${BookingUrl}/review-delete/${pk}/`, {
             })
             .then(response => {
                 if (response.status === 204) {

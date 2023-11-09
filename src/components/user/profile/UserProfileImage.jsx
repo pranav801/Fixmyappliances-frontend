@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { decodedToken } from '../../../Context/auth';
 import logo from './../../../assets/logo.png'
+import { BaseUrl } from '../../../constants/constants';
 
 
 function UserProfileImage() {
@@ -11,7 +12,7 @@ function UserProfileImage() {
 
   const fetchProfileImage = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/user-profile-detail/' + token.id);
+      const response = await axios.get(`${BaseUrl}/api/user-profile-detail/` + token.id);
 
       setProfileImage(response.data.profile_image);
 
@@ -21,13 +22,11 @@ function UserProfileImage() {
     }
   };
 
-  // Function to handle file input change for updating the image
   const handleImageChange = (event) => {
     const image = event.target.files[0];
     setNewProfileImage(image);
   };
 
-  // Function to handle image update
   const handleImageUpdate = async (newImage) => {
     const formData = new FormData();
     formData.append('profile_image', newImage);
@@ -35,8 +34,7 @@ function UserProfileImage() {
     setProfileImage(URL.createObjectURL(newImage));
 
     try {
-      // Make a PATCH request to your API to update the image
-      await axios.patch('http://localhost:8000/api/update-profile-image/' + token.id, formData, {
+      await axios.patch(`${BaseUrl}/api/update-profile-image/` + token.id, formData, {
 
       });
       fetchProfileImage()

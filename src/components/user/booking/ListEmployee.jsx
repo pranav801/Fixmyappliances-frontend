@@ -12,6 +12,7 @@ import {
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { decodedToken } from '../../../Context/auth';
+import { BookingUrl } from '../../../constants/constants';
 
 
 
@@ -22,7 +23,7 @@ function ListEmployee() {
     const {serviceId} = useParams();
     console.log('serviceid',serviceId);
     useEffect(() => {
-        axios.get(`http://localhost:8000/booking/employees/available/${user}/`)
+        axios.get(`${BookingUrl}/employees/available/${user}/`)
             .then((response) => {
                 setEmployees(response.data);
             })
@@ -40,7 +41,7 @@ function ListEmployee() {
         }
         console.log(bookingData);
         
-        axios.post('http://localhost:8000/booking/employees/create/',bookingData)
+        axios.post(`${BookingUrl}/employees/create/`,bookingData)
           .then(response => {
             window.location.href = response.data;
             toast.success(response.data.message);

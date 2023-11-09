@@ -3,6 +3,7 @@ import { Avatar, Button, Typography } from "@material-tailwind/react";
 import { Link, useParams } from 'react-router-dom';
 import image from "../../../assets/payment-success.png"
 import axios from 'axios';
+import { BookingUrl } from '../../../constants/constants';
 
 function PaymentSucess() {
 
@@ -10,7 +11,7 @@ function PaymentSucess() {
         const urlParams = new URLSearchParams(window.location.search);
         const booking = urlParams.get("booking");
         
-        axios.patch(`http://localhost:8000/booking/payment-success/${booking}/`)
+        axios.patch(`${BookingUrl}/payment-success/${booking}/`)
             .then((response) => {
                 console.log(response);
             })

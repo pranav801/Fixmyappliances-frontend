@@ -12,6 +12,7 @@ import {
 import img from '../../../assets/add-review.png'
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BookingUrl } from "../../../constants/constants";
 
 const ReviewModal = ({ user, product }) => {
     const [open, setOpen] = useState(false);
@@ -37,7 +38,7 @@ const ReviewModal = ({ user, product }) => {
 
     const handleSubmit = () => {
 
-        axios.post("http://localhost:8000/booking/add-review/", { ...reviewData, product })
+        axios.post(`${BookingUrl}/add-review/`, { ...reviewData, product })
             .then((response) => {
                 if (response.status === 201) {
                     handleOpen();

@@ -10,6 +10,7 @@ import {
     Rating,
 } from "@material-tailwind/react";
 import axios from "axios";
+import { BookingUrl } from '../../../constants/constants';
 
 function ReviewRatingCard({ productID }) {
     // const [product_id, setProductID] = useState(productID);
@@ -17,7 +18,7 @@ function ReviewRatingCard({ productID }) {
     console.log(productID);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/booking/list-review-product/${productID}/`)
+        axios.get(`${BookingUrl}/list-review-product/${productID}/`)
             .then((response) => {
                 setReviews(response.data);
             })

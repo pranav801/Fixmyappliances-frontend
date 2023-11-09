@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { decodedToken } from '../../../Context/auth';
 import axios from 'axios';
+import { BaseUrl } from '../../../constants/constants';
 
 
 function UserProfileIcon() {
@@ -57,7 +58,7 @@ function UserProfileIcon() {
     
     useEffect(() => {
         const token = decodedToken(('userJwt'))
-        axios.get(`http://localhost:8000/api/user-profile-detail/${token?.id}/`)
+        axios.get(`${BaseUrl}/api/user-profile-detail/${token?.id}/`)
             .then((response) => {
                 setProfile(response.data);
             })

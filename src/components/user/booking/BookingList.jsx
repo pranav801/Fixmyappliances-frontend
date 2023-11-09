@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { decodedToken } from "../../../Context/auth";
 import { useEffect, useState } from "react";
 import RegisterCompliantModal from "../complaint/RegisterCompliantModal";
+import { BookingUrl } from "../../../constants/constants";
 
 
 
@@ -23,7 +24,7 @@ function BookingList() {
     const token = decodedToken('userJwt')
     const [booking, setBooking] = useState([])
     const fetchBookingData = () => {
-        axios.get('http://localhost:8000/booking/bookings-list/' + token.id)
+        axios.get(`${BookingUrl}/bookings-list/` + token.id)
             .then(response => {
                 setBooking(response.data)
                 console.log('result booking:   ', response.data);

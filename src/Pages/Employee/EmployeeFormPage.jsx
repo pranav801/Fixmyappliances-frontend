@@ -11,6 +11,7 @@ import Multiselect from "multiselect-react-dropdown";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { EmployeeUrl, ServiceUrl } from "../../constants/constants";
 
 
 function EmployeeFormPage() {
@@ -37,7 +38,7 @@ function EmployeeFormPage() {
 
   const fetchCategory = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/service/category/');
+      const response = await axios.get(`${ServiceUrl}/category/`);
       setCategory(response.data);
     } catch (error) {
       console.error('Error fetching category:', error);
@@ -50,7 +51,7 @@ function EmployeeFormPage() {
 
   const fetchProducts = async (cat_id) => {
     try {
-      const response = await axios.get('http://localhost:8000/service/product/listing/'+cat_id+'/');
+      const response = await axios.get(`${ServiceUrl}/product/listing/${cat_id}/`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -77,7 +78,7 @@ function EmployeeFormPage() {
     }
 
     try {
-      const response = await axios.patch(`http://localhost:8000/emp/update-profile/${emp}/`, backend_data1);
+      const response = await axios.patch(`${EmployeeUrl}/update-profile/${emp}/`, backend_data1);
       // setProducts(response.data);
     } catch (error) {
       console.error('Update 1 error:', error);
@@ -95,7 +96,7 @@ function EmployeeFormPage() {
     }
 
     try {
-      const response = await axios.patch(`http://localhost:8000/emp/complete-profile/${emp}/`, backend_data2);
+      const response = await axios.patch(`${EmployeeUrl}/complete-profile/${emp}/`, backend_data2);
       // setProducts(response.data);
       navigate('/employee/login');
       // location.reload()

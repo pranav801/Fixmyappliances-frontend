@@ -10,6 +10,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { toast } from "react-toastify";
+import { BookingUrl } from "../../../constants/constants";
 
 function RegisterComplaintModal({ user }) {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,7 @@ function RegisterComplaintModal({ user }) {
   };
 
   const handleSubmit = () => {
-    axios.post("http://127.0.0.1:8000/booking/register-complaint/", { ...formData, user })
+    axios.post(`${BookingUrl}/register-complaint/`, { ...formData, user })
       .then((response) => {
         console.log("Complaint registered successfully.", response.data);
         setFormData({

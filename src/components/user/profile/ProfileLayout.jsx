@@ -3,6 +3,7 @@ import { decodedToken } from '../../../Context/auth';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { Button } from '@material-tailwind/react';
+import { BaseUrl } from '../../../constants/constants';
 
 function ProfileLayout() {
     const token = decodedToken('userJwt');
@@ -12,8 +13,7 @@ function ProfileLayout() {
 
 
     const fetchUserData = () => {
-        axios
-            .get('http://localhost:8000/api/user-profile-detail/' + token.id)
+        axios.get(`${BaseUrl}/api/user-profile-detail/` + token.id)
             .then((response) => {
                 setUserData(response.data);
             })
@@ -35,7 +35,7 @@ function ProfileLayout() {
 
     const handleSaveClick = () => {
         axios
-            .patch('http://localhost:8000/api/users-profile-update/' + token.id, updatedUserData)
+            .patch(`${BaseUrl}/api/users-profile-update/` + token.id, updatedUserData)
             .then((response) => {
                 setIsEditMode(false);
                 setUserData(response.data);

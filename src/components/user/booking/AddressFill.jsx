@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import AddressAdd from './AddressAdd';
 import AddressSelect from './AddressSelect';
 import { decodedToken } from '../../../Context/auth';
+import { BaseUrl } from '../../../constants/constants';
 
 function AddressFill({ open, handleOpen, serviceId }) {
 
@@ -38,7 +39,7 @@ function AddressFill({ open, handleOpen, serviceId }) {
         console.log('token user',user);
         const fetchAddress = async () => {
             try {
-                const res = await axios.get(`http://localhost:8000/api/address/select/${user}`)
+                const res = await axios.get(`${BaseUrl}/api/address/select/${user}`)
                 console.log('user address:  ', res.data);
                 setAddrs(res.data);
             } catch (error) {

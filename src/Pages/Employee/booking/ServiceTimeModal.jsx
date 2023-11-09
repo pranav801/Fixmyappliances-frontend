@@ -2,6 +2,7 @@ import { Button, Dialog, DialogBody, DialogHeader, DialogFooter, Input } from '@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
+import { BookingUrl } from '../../../constants/constants';
 
 function ServiceTimeModal({ booking }) {
     const [serviceDate, setServiceDate] = useState('');
@@ -27,7 +28,7 @@ function ServiceTimeModal({ booking }) {
             return;
         }
 
-        axios.patch(`http://localhost:8000/booking/update-service-date-time/${bookingId}/`, {
+        axios.patch(`${BookingUrl}/update-service-date-time/${bookingId}/`, {
             service_date: serviceDate,
             service_time: serviceTime,
         })

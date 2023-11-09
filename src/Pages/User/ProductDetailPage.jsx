@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import ReviewRatingCard from '../../components/user/review/ReviewRatingCard';
 import ReviewModal from '../../components/user/review/ReviewModal';
 import { decodedToken } from '../../Context/auth';
+import { BaseUrl } from '../../constants/constants';
 
 function ProductDetailPage() {
     const [service, setService] = useState({});
@@ -14,7 +15,7 @@ function ProductDetailPage() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/service/product/detail/${productService}`);
+                const response = await axios.get(`${BaseUrl}/service/product/detail/${productService}`);
 
                 setService(response.data[0]);
                 console.log('response', response.data[0]);

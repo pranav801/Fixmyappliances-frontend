@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Input } from '@material-tailwind/react';
 import axios from 'axios';
 import { decodedToken } from '../../../Context/auth';
+import { BaseUrl } from '../../../constants/constants';
 
 function AddressAdd({ backButton }) {
 
@@ -30,11 +31,10 @@ function AddressAdd({ backButton }) {
 
     const handleSave = async () => {
 
-        await axios.post('http://localhost:8000/api/address/', formData)
+        await axios.post(`${BaseUrl}/api/address/`, formData)
             .then(response => {
                 console.log('Address saved');
                 backButton();
-
 
             })
             .catch(error => {

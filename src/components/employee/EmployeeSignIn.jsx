@@ -3,6 +3,7 @@ import { Input } from "@material-tailwind/react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { EmployeeUrl } from '../../constants/constants';
 
 function EmployeeSignIn() {
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ function EmployeeSignIn() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
     const handleLogin = () => {
-        axios.post('http://localhost:8000/emp/login/', {
+        axios.post(`${EmployeeUrl}/login/`, {
             email,
             password,
         })

@@ -3,6 +3,7 @@ import ProductCard from '../../components/user/service/ProductCard'
 import UserNavBar from '../../components/user/home/UserNavBar'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { ServiceUrl } from '../../constants/constants';
 
 
 function ProductList() {
@@ -11,7 +12,7 @@ function ProductList() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/service/product/products/${productCategory}/`);
+        const response = await axios.get(`${ServiceUrl}/product/products/${productCategory}/`);
         setProducts(response.data[0]);
       } catch (error) {
         console.error('Error fetching products:', error);

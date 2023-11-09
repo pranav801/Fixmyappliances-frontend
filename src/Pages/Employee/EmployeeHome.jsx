@@ -5,6 +5,7 @@ import EmployeeDashboard from '../../components/employee/dashboard/EmployeeDashb
 import { decodedToken } from '../../Context/auth'
 import axios from 'axios'
 import PasswordChangeModal from '../../components/employee/profile/PasswordChangeModal'
+import { EmployeeUrl } from '../../constants/constants'
 
 function EmployeeHome() {
     const [open, setOpen] = useState(false);
@@ -14,7 +15,7 @@ function EmployeeHome() {
     const token = decodedToken('employeeJwt')
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/emp/password-check/${token.employee}`)
+        axios.get(`${EmployeeUrl}/password-check/${token.employee}`)
         .then((res) => {
             console.log('ressssult', res.data);
             if (!res.data.isChangePassword) {

@@ -13,6 +13,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { decodedToken } from "../../../Context/auth";
 import ServiceTimeModal from "./ServiceTimeModal";
+import { BookingUrl } from "../../../constants/constants";
 
 
 const TABLE_HEAD = ["Booking Id", "Customer", "Address", "Product", "Service", "Booking Date", "Service Date", "Status", "update"];
@@ -22,7 +23,7 @@ function BookingList() {
     const token = decodedToken('employeeJwt')
     const [booking, setBooking] = useState([])
     const fetchBookingData = () => {
-        axios.get('http://localhost:8000/booking/booking-list-employee/' + token.employee)
+        axios.get(`${BookingUrl}/booking-list-employee/` + token.employee)
             .then(response => {
                 setBooking(response.data)
                 console.log('result booking:   ', response.data);
@@ -39,7 +40,7 @@ function BookingList() {
     const handleStatusChange = (e, bookingId) => {
         const selectedStatus = e.target.value;
 
-        axios.patch(`http://localhost:8000/booking/update-booking-status/${bookingId}/`, {
+        axios.patch(`${BookingUrl}/update-booking-status/${bookingId}/`, {
             status: selectedStatus
         })
             .then(response => {

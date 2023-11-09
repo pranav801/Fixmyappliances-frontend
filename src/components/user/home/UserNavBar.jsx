@@ -9,6 +9,7 @@ import {
 import UserProfileIcon from './UserProfileIcon';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { ServiceUrl } from '../../../constants/constants';
 
 function UserNavBar() {
   const inputRef = useRef()
@@ -16,7 +17,7 @@ function UserNavBar() {
   const [results, setResults] = useState([]);
 
   const handleSearch = () => {
-    axios.get(`http://localhost:8000/service/search/?q=${query}`)
+    axios.get(`${ServiceUrl}/search/?q=${query}`)
     .then((response) => {
         console.log(inputRef.current.value);
         setResults(response.data)

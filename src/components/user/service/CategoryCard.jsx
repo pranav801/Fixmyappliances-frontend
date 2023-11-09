@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { ServiceUrl } from '../../../constants/constants';
 
 
 function CategoryCard() {
@@ -15,7 +16,7 @@ function CategoryCard() {
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/service/category/');
+        const response = await axios.get(`${ServiceUrl}/category/`);
         setCategory(response.data);
       } catch (error) {
         console.error('Error fetching category:', error);

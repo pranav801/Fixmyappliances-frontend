@@ -34,7 +34,7 @@ function ProductDetailPage() {
 
                 <div className='justify-center'>
                     <h1 className='text-3xl ' >{service?.service_product?.product_name}</h1>
-                    <img src={'http://localhost:8000' + service?.service_product?.product_img} alt="" className='w-96 pt-10 pb-20' />
+                    <img src={ service?.service_product?.product_img} alt="" className='w-96 pt-10 pb-20' />
 
                     <h3>{service?.service_product?.product_des}</h3>
                 </div>

@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { BaseUrl, ServiceUrl } from '../../../constants/constants';
 
 
 function ProductCard() {
@@ -15,7 +16,7 @@ function ProductCard() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/service/product/products/${productCategory}/`);
+        const response = await axios.get(`${ServiceUrl}/product/products/${productCategory}/`);
         setProducts(response.data);
         console.log(response.data)
       } catch (error) {
@@ -37,8 +38,9 @@ function ProductCard() {
           <Card className="max-w-[18rem] overflow-hidden m-4">
             <CardHeader floated={false} shadow={false} color="transparent" className="m-0 rounded-none">
               <div style={{ width: '18rem', height: '18rem' }}>
-                <img
-                  src={'http://localhost:8000' + prod.product_img}
+                <img 
+                  // src={`${BaseUrl}/${prod.product_img}`}
+                  src={prod.product_img}
                   alt="ui/ux review check"
                   style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />

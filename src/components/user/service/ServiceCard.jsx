@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import axios from 'axios';
-import { BaseUrl } from '../../../constants/constants';
+import { BaseUrl, ServiceUrl } from '../../../constants/constants';
 import { Link } from 'react-router-dom';
 
 function ServiceCard({ service }) {
@@ -16,7 +16,7 @@ function ServiceCard({ service }) {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/service/services/list');
+        const response = await axios.get(`${ServiceUrl}/services/list`);
         setServices(response.data);
         console.log('services: ',response.data);
       } catch (error) {
@@ -42,7 +42,7 @@ function ServiceCard({ service }) {
           </CardHeader>
           <CardBody>
             <Typography variant="h5" color="blue-gray" className="mb-2">
-              {service.service_name}
+              {service.service_name} 
             </Typography>
             <Typography>
               {service.service_des}

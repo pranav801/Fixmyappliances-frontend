@@ -10,7 +10,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import AddressFill from '../booking/AddressFill';
 import { getLocal } from '../../../Context/auth';
-import { BaseUrl } from '../../../constants/constants';
+import { BaseUrl, ServiceUrl } from '../../../constants/constants';
 
 
 function ProductDetail() {
@@ -35,7 +35,7 @@ function ProductDetail() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/service/product/detail/${productService}`);
+                const response = await axios.get(`${ServiceUrl}/product/detail/${productService}`);
                 setServices(response.data);
             } catch (error) {
                 console.error('Error fetching service:', error);
@@ -55,10 +55,11 @@ function ProductDetail() {
                         className="m-0 w-2/5 shrink-0 rounded-r-none"
                     >
                         <img
-                            src={BaseUrl+ service.service_img}
+                            src={service.service_img}
                             alt="card-image"
                             className="h-full w-full object-cover"
                         />
+                        
                     </CardHeader>
                     <CardBody>
                         <Typography variant="h6" color="gray" className="mb-4 uppercase">
@@ -66,7 +67,7 @@ function ProductDetail() {
                         </Typography>
 
                         <Typography color="gray" className="mb-4 font-normal max-w-[16rem] ">
-                            {service.service_des}
+                            {service.service_des} 
                         </Typography>
                         <Typography variant="h6" color="black" className="mb-2 uppercase">
                             ₹ {service.service_charge} /-

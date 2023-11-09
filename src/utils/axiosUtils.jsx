@@ -44,7 +44,7 @@ adminAxiosInstance.interceptors.request.use(async (req) => {
     return modifiedReq;
 })
 
-const EmpUrl = 'http://127.0.0.1:8000/emp/'
+const EmpUrl = `${BaseUrl}/emp/`
 
 const employeeAxiosInstance = createAxiosClient(EmpUrl)
 adminAxiosInstance.interceptors.request.use(async (req) => {

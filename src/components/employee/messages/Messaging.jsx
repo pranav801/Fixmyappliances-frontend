@@ -4,7 +4,7 @@ import axios from 'axios';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import { useRef } from 'react';
 import { decodedToken } from '../../../Context/auth';
-import { BaseUrl, defaultUserImageLink } from '../../../constants/constants';
+import { BaseUrl, WsBaseUrl, defaultUserImageLink } from '../../../constants/constants';
 
 
 
@@ -49,7 +49,7 @@ const Chat = ({ selectedchat,senderid,setSenderId }) => {
             }
         })
 
-        const client = new W3CWebSocket(`ws://localhost:8000/chat/${selectedchat}/`);
+        const client = new W3CWebSocket(`${WsBaseUrl}/chat/${selectedchat}/`);
 
         setClientState(client)
         client.onopen = () => {

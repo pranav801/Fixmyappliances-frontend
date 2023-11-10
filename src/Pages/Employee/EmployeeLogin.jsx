@@ -21,6 +21,7 @@ function EmployeeLogin() {
             console.log(response.data);
         }).catch((error) => {
             setIsLoading(false)
+            console.log(error);
             toast.error('some error occoured')
         })
     };

@@ -24,7 +24,7 @@ function EmployeeRequestList() {
   const [employeeData, setEmployeeData] = useState([]);
 
   const fetchEmployeeData = () => {
-    axios.get('http://localhost:8000/su/employeeRequest/')
+    axios.get(`${AdminUrl}/employeeRequest/`)
       .then(response => {
         setEmployeeData(response.data);
         

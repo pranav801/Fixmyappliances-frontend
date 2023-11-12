@@ -8,11 +8,13 @@ import {
     Card,
     Typography,
     Button,
+    Rating,
 } from "@material-tailwind/react";
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { decodedToken } from '../../../Context/auth';
 import { BookingUrl } from '../../../constants/constants';
+import UserNavBar from '../home/UserNavBar';
 
 
 
@@ -56,8 +58,8 @@ function ListEmployee() {
 
 
     return (
-        <div className='flex flex-col items-center pt-24'>
-            
+        <div className='flex flex-col items-center '>
+            <UserNavBar/>
 
             <h2 className='pb-10 text-2xl'>List of Employees on your location</h2>
             {employees.map((emp) => (
@@ -93,6 +95,9 @@ function ListEmployee() {
                                     </Typography>
                                 ))}
                                 
+                                </div>
+                                <div className='ps-6'>
+                                    <Rating value={emp.rating} readonly />
                                 </div>
                                 <Button className='bg-black text-white ps-6' onClick={() =>handleSelect(emp.id)} >
                                     Select

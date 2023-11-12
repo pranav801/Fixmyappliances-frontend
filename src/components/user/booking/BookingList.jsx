@@ -5,7 +5,6 @@ import {
     CardBody,
     Chip,
     Avatar,
-    Button,
 } from "@material-tailwind/react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,16 +12,19 @@ import { decodedToken } from "../../../Context/auth";
 import { useEffect, useState } from "react";
 import RegisterCompliantModal from "../complaint/RegisterCompliantModal";
 import { BookingUrl } from "../../../constants/constants";
-
+import FeedBackModal from "../feedback/FeedBackModal";
 
 
 const TABLE_HEAD = ["Booking Id", "Employee", "Address", "Product", "Service", "Service Charge", "Booking Date", "Service Date", "Status"];
 
 
-
 function BookingList() {
     const token = decodedToken('userJwt')
     const [booking, setBooking] = useState([])
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(!open);
+  
     const fetchBookingData = () => {
         axios.get(`${BookingUrl}/bookings-list/` + token.id)
             .then(response => {
@@ -36,7 +38,7 @@ function BookingList() {
     }
     useEffect(() => {
         fetchBookingData();
-    }, []);
+    },[]);
 
     return (
         <Card className="h-full w-full">
@@ -51,7 +53,7 @@ function BookingList() {
                         </Typography>
                     </div>
                     <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-                        <RegisterCompliantModal user = {token.id} />
+                        <RegisterCompliantModal user={token.id} />
                     </div>
                 </div>
 
@@ -76,7 +78,7 @@ function BookingList() {
                                     </th>
                                 ))}
                             </tr>
-                        </thead>
+                        </thead>error
                         <tbody>
                             {booking.map((book, index) => {
                                 const isLast = index === book.length - 1;
@@ -194,13 +196,29 @@ function BookingList() {
                                             </div>
                                         </td>
                                         <td className={classes}>
-                                            <div className="w-max">
-                                                <Chip
-                                                    variant="ghost"
-                                                    size="sm"
-                                                    value={book.status}
-                                                    color='gray'
-                                                />
+                                            <div className="flex flex-col">
+                                                <div className="w-max">
+                                                    <Chip
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        value={book.status}
+                                                        color='gray'
+                                                    />
+                                                </div>
+                                                {book?.status == 'completed' ?
+                                                    <div>
+                                                        <Typography
+                                                            variant="small"
+                                                            color="blue"
+                                                            className="font-normal underline p-4 cursor-pointer"
+                                                            onClick={handleOpen}
+                                                        >
+                                                            feedback
+                                                        </Typography>
+                                                        <FeedBackModal open={open} handleOpen={handleOpen} user={token.id} booking={book.id} employee={book.employee.id} />
+                                                    </div>
+                                                    : ''
+                                                }
                                             </div>
                                         </td>
                                     </tr>

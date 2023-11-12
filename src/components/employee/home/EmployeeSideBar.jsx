@@ -61,7 +61,17 @@ function EmployeeSideBar() {
                     </ListItemSuffix> */}
                 </ListItem>
                 </Link>
+                <Link to='/employee/feedbacklist' ><ListItem>
+                    <ListItemPrefix>
+                        <ShoppingBagIcon className="h-5 w-5" />
 
+                    </ListItemPrefix>
+                    Feedback
+                    {/* <ListItemSuffix>
+                        <Chip value="7" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
+                    </ListItemSuffix> */}
+                </ListItem>
+                </Link>
                 <Link to='/employee/inbox' >
                     <ListItem>
                         <ListItemPrefix>

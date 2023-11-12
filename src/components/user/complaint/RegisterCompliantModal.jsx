@@ -33,6 +33,7 @@ function RegisterComplaintModal({ user }) {
   const handleSubmit = () => {
     axios.post(`${BookingUrl}/register-complaint/`, { ...formData, user })
       .then((response) => {
+        toast.success('complaint registerd successfully')
         console.log("Complaint registered successfully.", response.data);
         setFormData({
           booking_id: "",

@@ -29,6 +29,7 @@ import EmployeeInbox from './Pages/Employee/EmployeeInbox'
 import EmployeeProfilePage from './Pages/Employee/EmployeeProfilePage'
 import ComplaintListPage from './Pages/Admin/ComplaintListPage'
 import ReviewListPage from './Pages/Admin/ReviewListPage'
+import EmployeeFeedbackPage from './Pages/Employee/EmployeeFeedbackPage'
 
 function App() {
 
@@ -65,6 +66,7 @@ function App() {
           <Route path='employee/bookinglist' element={<EmpBookingListPage/>} />
           <Route path='/employee/inbox/' element={<EmployeeInbox/>} />
           <Route path='/employee/profile/' element={<EmployeeProfilePage/>} />
+          <Route path='/employee/feedbacklist' element={<EmployeeFeedbackPage/>} />
 
           <Route path='service/booking/listemployee/:serviceId' element={<ListEmployee/>} />
           <Route path='service/payment/' element={<PaymentSucess/>} />

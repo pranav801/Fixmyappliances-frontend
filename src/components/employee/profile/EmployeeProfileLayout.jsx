@@ -30,7 +30,7 @@ function EmployeeProfileLayout() {
     };
 
 
-    useEffect(() => {
+    useEffect(() => {open
         fetchEmpData();
     }, [token.id]);
 
@@ -77,7 +77,7 @@ function EmployeeProfileLayout() {
                             <input
                                 type="text"
                                 name="first_name"
-                                value={updatedEmpData.first_name?updatedEmpData.first_name:empData.employee?.first_name}
+                                value={updatedEmpData.first_name?updatopenedEmpData.first_name:empData.employee?.first_name}
                                 onChange={handleInputChange}
                             />
                         ) : (

@@ -1,12 +1,9 @@
 import {
     Card,
     CardHeader,
-    Input,
     Typography,
     CardBody,
-    Chip,
     Avatar,
-    Button,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -96,7 +93,7 @@ function BookingList() {
                             const isLast = index === book.length - 1;
                             const classes = isLast
                                 ? "p-4"
-                                : "p-4 border-b border-blue-gray-50";
+                                : "p-4 border-b border-blue-gordersray-50";
 
                             return (
                                 <tr key={book.id}>
@@ -203,7 +200,7 @@ function BookingList() {
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
-                                            className="font-normal"
+                                            className="font-nordersormal"
                                         >
                                             -
                                         </Typography>

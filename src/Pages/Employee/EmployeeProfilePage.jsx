@@ -8,6 +8,7 @@ function EmployeeProfilePage() {
 
            <div className='pb-20' >
            <EmployeeNavBar />
+           
            </div>
             <div>
 
